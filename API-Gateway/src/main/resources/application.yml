@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: Product-Service
+          uri: lb://PRODUCT-SERVICE  # URI of your backend service
+          predicates:
+            - Path=/prodService/**  # Path predicate to match requests for service1
+#          filters:
+#            - StripPrefix=1  # Remove the /service1 prefix before forwarding the request
+
+        - id: Spring-Security
+          uri: lb://SPRING-SECURITY  # URI of your backend service
+          predicates:
+            - Path=/auth/**
